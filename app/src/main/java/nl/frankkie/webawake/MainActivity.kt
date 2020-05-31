@@ -23,9 +23,11 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "WebAwake"
     //Change this to the actual URL
     //private val initialUrl = "file:///android_asset/index.html"
-    private val initialUrl = "https://test.example.org/"
+    //private val initialUrl = "https://test.example.org/"
+    private val initialUrl = "https://test.webrtc.org"
 
-    private val urlContainsForInternalBrowser = "example.org"
+
+    private val urlContainsForInternalBrowser = "webrtc.org"
 
     private val requiredPermission = arrayOf(
         Manifest.permission.RECORD_AUDIO,
@@ -94,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread {
                     Log.d(TAG, request.origin.toString())
                     if (request.origin.toString().startsWith("file:///")
-                        || request.origin.toString().contains("bigbluebutton.org")) {
+                        || request.origin.toString().contains(urlContainsForInternalBrowser)) {
                         Log.d(TAG, "GRANTED")
                         request.grant(request.resources)
                     } else {
